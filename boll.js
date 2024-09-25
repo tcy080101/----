@@ -20,21 +20,22 @@ class Ball {
         this.x += this.dx;  
         this.y += this.dy;  
   
-        if (this.x + this.radius > canvasWidth) {  
-            this.dx = -this.dx;  
-            this.x = canvasWidth - this.radius;  
-        } else if (this.x - this.radius < 0) {  
-            this.dx = -this.dx;  
-            this.x = this.radius;  
+        // 检测是否撞到左右墙壁  
+        if (this.x + this.radius > canvasWidth || this.x - this.radius < 0) {  
+            this.dx = -this.dx; // 反弹  
+            this.changeColor(); // 变色  
         }  
   
-        if (this.y + this.radius > canvasHeight) {  
-            this.dy = -this.dy;  
-            this.y = canvasHeight - this.radius;  
-        } else if (this.y - this.radius < 0) {  
-            this.dy = -this.dy;  
-            this.y = this.radius;  
+        // 检测是否撞到上下墙壁  
+        if (this.y + this.radius > canvasHeight || this.y - this.radius < 0) {  
+            this.dy = -this.dy; // 反弹  
+            this.changeColor(); // 变色  
         }  
+    }  
+  
+    // 更改小球颜色的方法  
+    changeColor() {  
+        this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;  
     }  
 }  
   
